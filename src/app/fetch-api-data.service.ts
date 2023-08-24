@@ -43,7 +43,7 @@ export class UserRegistrationService {
     );
   }
 
-  getMovie(title: string): Observable<any> {
+  getMovies(title: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/' + title, {headers: new HttpHeaders(
       {
