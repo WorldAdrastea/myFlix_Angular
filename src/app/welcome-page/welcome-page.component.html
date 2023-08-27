@@ -1,29 +1,37 @@
 <div class="main-page">
     <h1>
-      Welcome to myFlix!
+        Welcome to myFlix!
     </h1>
     <!-- Adding the click event on the signup button -->
     <button
-      mat-raised-button
-      (click)="openUserRegistrationDialog()"
-      style="margin-right: 10px;"
-      color="primary"
+        mat-raised-button
+        (click)="openUserRegistrationDialog()"
+        style="margin-right: 10px;"
+        color="primary"
     >
-      Sign Up
+        Sign Up
     </button>
     <button
-      mat-raised-button
-      (click)="openLoginUserDialog()"
-      color="primary"
-      style="margin-right: 10px;"
+        mat-raised-button
+        (click)="openLoginUserDialog()"
+        color="primary"
+        style="margin-right: 10px;"
     >
-      Login
+        Login
     </button>
     <button
-      mat-raised-button
-      color="primary"
-      (click)="openMoviesDialog()"
+        mat-raised-button
+        color="primary"
+        (click)="openMoviesDialog()"
+        style="margin-right: 10px;"
     >
-      All Movies
+        All Movies   
+    </button>
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="openUserProfileDialog()"
+    >
+        User Profile
     </button>
 </div>
