@@ -1,0 +1,63 @@
+/* Add padding and margin to the container for spacing */
+.container {
+    padding: 20px;
+    margin: 20px;
+}
+
+/* Style for the main heading */
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Style for strong text (like "Username", "Email", etc.) */
+strong {
+    font-weight: bold;
+}
+
+/* Style for user details */
+.user-details {
+    margin-bottom: 20px;
+}
+
+/* Style for the form inputs */
+form {
+    margin-top: 20px;
+}
+
+/* Style for labels of input fields */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+/* Style for input fields */
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for buttons */
+button {
+    margin-right: 10px;
+}
+
+/* Style for the favorite movies section */
+.favourite-movies {
+    margin-top: 20px;
+}
+
+/* Style for individual movie titles */
+.movie-title {
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+/* Style for the action buttons */
+.action-buttons {
+    margin-top: 20px;
+}

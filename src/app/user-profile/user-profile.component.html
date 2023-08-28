@@ -1,9 +1,28 @@
-<div *ngIf="user">
+<div *ngIf="user" style="padding: 5%; margin: 5%; display: block; text-align: center;">
     <h2>User Profile</h2>
     <p><strong>Username:</strong> {{ user.Username }}</p>
     <p><strong>Email:</strong> {{ user.Email }}</p>
-    <!-- Display other user profile information as needed -->
-</div>
-<div *ngIf="!user">
-    <p>Loading user profile...</p>
+    <p><strong>Birthday:</strong> {{ user.Birthday }}</p>
+    
+    <h2>Favourite Movies</h2>
+    <div *ngFor="let movie of favouriteMovies">
+        <div>{{ movie.Title }}</div>
+    </div>
+
+    <h2>Update Profile</h2>
+    <form>
+        <label for="newUsername">New Username:</label>
+        <input type="text" id="newUsername" [(ngModel)]="userInfo.Username" name="newUsername" required><br>
+
+        <label for="newPassword">New Password:</label>
+        <input type="text" id="newPassword" [(ngModel)]="userInfo.Password" name="newPassword" required><br>
+    
+        <label for="newEmail">New Email:</label>
+        <input type="email" id="newEmail" [(ngModel)]="userInfo.Email" name="newEmail" required><br>
+    
+        <label for="newBirthday">New Birthday:</label>
+        <input type="date" id="newBirthday" [(ngModel)]="userInfo.Birthday" name="newBirthday" required><br>
+    </form>
+    <button mat-button type="submit" (click)="editUserProfile()" color="primary">Update Profile</button>
+    <button mat-button color="warn" (click)="deleteUserProfile()">Delete account</button>
 </div>

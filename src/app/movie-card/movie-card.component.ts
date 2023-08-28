@@ -4,6 +4,8 @@ import { UserRegistrationService } from '../fetch-api-data.service'
 import { MatDialog } from '@angular/material/dialog';
 import { MovieInfoComponent } from '../movie-info/movie-info.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+
 
 @Component({
   selector: 'app-movie-card',
@@ -90,5 +92,11 @@ export class MovieCardComponent implements OnInit {
     } else {
       this.addToFavourites(id);
     }
+  }
+
+  openUserProfileDialog(): void {
+    this.dialog.open(UserProfileComponent, {
+    width: '280px'
+    });
   }
 }

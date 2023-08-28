@@ -1,0 +1,76 @@
+* {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.mat-card {
+    width: calc(33.33% - 20px); /* Adjust the width as needed */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Apply styles to buttons within mat-card-actions */
+.mat-card-actions button {
+    margin-right: 10px; /* Add spacing between buttons */
+}
+
+img {
+    width: 50%;
+    height: auto; /* Maintain aspect ratio */
+    margin: auto; /* Center the image horizontally */
+}
+
+@media (max-width: 768px) {
+    .movie-card-container {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+  
+    .movie-card {
+      padding: 15px;
+      font-size: 14px;
+    }
+  
+    .movie-title {
+      font-size: 16px;
+      margin-top: 8px;
+    }
+  
+    .movie-description {
+      font-size: 12px;
+    }
+
+    img {
+        width: 50%
+    }
+}
+  
+@media (max-width: 480px) {
+    .movie-card-container {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+  
+    .movie-card {
+      padding: 10px;
+      font-size: 12px;
+    }
+  
+    .movie-title {
+      font-size: 14px;
+      margin-top: 6px;
+    }
+  
+    .movie-description {
+      font-size: 10px;
+    }
+
+    img {
+        width: 30%
+    }
+}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
@@ -101,7 +101,9 @@ export class UserRegistrationService {
       })
     }).pipe(
       map(this.extractResponseData),
-      map((data) => data.FavouriteMovies),
+      map((data) => {
+        return data.FavouriteMovies
+      }),
       catchError(this.handleError)
     );
   }
@@ -109,8 +111,12 @@ export class UserRegistrationService {
   addFavouriteMovies(movieId: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
+
+    user.FavouriteMovies = user.FavouriteMovies || [];
     user.FavouriteMovies.push(movieId);
+
     localStorage.setItem('user', JSON.stringify(user));
+
     console.log('Updated user favourites:', user.FavouriteMovies);
     return this.http.post(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {}, {headers: new HttpHeaders(
       {
@@ -125,7 +131,7 @@ export class UserRegistrationService {
 
   isFavouriteMovie(movieId: string): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return user.FavouriteMovies.includes(movieId);
+    return user && user.FavouriteMovies && user.FavouriteMovies.includes(movieId);
   }
 
   editUser(updatedUser: any): Observable<any> {
