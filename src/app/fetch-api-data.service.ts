@@ -14,7 +14,11 @@ export class UserRegistrationService {
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) { }
 
-  // Making the api call for the user registration endpoint
+  /**
+    * Sends user registration data to the backend.
+    * @param userDetails - The user registration data.
+    * @returns An observable with the registration response.
+    */
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
@@ -22,7 +26,11 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the use login endpoint
+   /**
+    * Sends user login data to the backend.
+    * @param userDetails - The user login data.
+    * @returns An observable with the login response.
+    */
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'login', userDetails).pipe(
@@ -30,7 +38,10 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the get all movies endpoint
+  /**
+    * Retrieves information about all movies in the movies endpoint from the API.
+    * @returns An observable with the movies response.
+    */
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
@@ -43,6 +54,11 @@ export class UserRegistrationService {
     );
   }
 
+  /**
+    * Retrieves information about a specific movie based on its title.
+    * @param title - The title of the movie.
+    * @returns An observable with the movie response.
+    */
   getMovies(title: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/' + title, {headers: new HttpHeaders(
@@ -54,6 +70,12 @@ export class UserRegistrationService {
       catchError(this.handleError)
     );
   }
+
+  /**
+    * Retrieves information about directors from director endpoint.
+    * @param directorName - Name of director.
+    * @returns An observable with the director response.
+    */
 
   getDirector(directorName: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -67,6 +89,12 @@ export class UserRegistrationService {
     );
   }
 
+   /**
+    * Retrieves information about movies of a specific genre based on the genre name.
+    * @param genreName - The name of the genre.
+    * @returns An observable with the genre response.
+    */
+
   getGenre(genreName: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/genre/' + genreName, {headers: new HttpHeaders(
@@ -78,6 +106,11 @@ export class UserRegistrationService {
       catchError(this.handleError)
     );
   }
+
+  /**
+    * Retrieves information about the logged-in user.
+    * @returns An observable with the user response.
+    */
 
   getUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -92,6 +125,10 @@ export class UserRegistrationService {
     );
   }
 
+  /**
+    * Retrieves a user's list of favourited movies.
+    * @returns An observable with the user's list of favourited movies.
+    */
   getFavouriteMovies(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -108,6 +145,11 @@ export class UserRegistrationService {
     );
   }
 
+  /**
+    * Adds a movie to user's list of favourite movies.
+    * @param movieId - The ID of the movie that is added to the favourite list.
+    * @returns An observable with the response after adding the movies to the favourite list.
+    */
   addFavouriteMovies(movieId: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -129,11 +171,21 @@ export class UserRegistrationService {
     );
   }
 
+  /**
+    * Checks if selected movie is already on user's favourite's list.
+    * @param movieId - The ID of the movie selected to compare.
+    * @returns An boolean that states whether the movie is in the user's favourites list.
+    */
   isFavouriteMovie(movieId: string): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user && user.FavouriteMovies && user.FavouriteMovies.includes(movieId);
   }
 
+  /**
+    * Edits the user profile information and sends the updated information to the backend.
+    * @param updatedUser - The updated user profile information.
+    * @returns An observable with the response after updating the user profile.
+    */
   editUser(updatedUser: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -147,6 +199,10 @@ export class UserRegistrationService {
     );
   }
 
+  /**
+    * Deletes the user's account.
+    * @returns An observable with the response after deleting the user's account.
+    */
   deleteUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -159,6 +215,11 @@ export class UserRegistrationService {
     );
   }
 
+  /**
+    * Deletes a movie from a user's favourite movie list.
+    * @param movieId - The ID of the movie that will be removed from the user's favourites list.
+    * @returns An observable with the response after deleting the movie from the user's favourites list.
+    */
   deleteFavouriteMovie(movieId: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -179,12 +240,21 @@ export class UserRegistrationService {
     );
   }
 
-  // Non-typed response extraction
+  /**
+    * Handles non-typed response extraction.
+    * @param res - The HTTP response.
+    * @returns The extracted response body or an empty object.
+    */
   private extractResponseData(res: any): any {
     const body = res;
     return body || { };
   }
 
+  /**
+    * Handles HTTP error responses.
+    * @param error - The HTTP error response.
+    * @returns An observable with an error message.
+    */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);

@@ -28,6 +28,10 @@ export class UserProfileComponent {
     this.getUser();
   }
 
+  /**
+    * Fetches user details and related favorite movies from the API.
+    */
+
   getUser(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       console.log('User response:', resp);
@@ -45,6 +49,11 @@ export class UserProfileComponent {
     })
   }
 
+  /**
+    * Edits the user's profile information.
+    * Updates the local storage and displays a success or error message.
+    */
+
   editUserProfile(): void {
     this.fetchApiData.editUser(this.userInfo).subscribe((result) => {
       localStorage.setItem('user', JSON.stringify(result));
@@ -58,6 +67,11 @@ export class UserProfileComponent {
       });
     });
   }
+
+  /**
+    * Deletes the user's profile.
+    * Clears local storage, navigates to the welcome page, and displays messages.
+    */
 
   deleteUserProfile(): void {
     this.fetchApiData.deleteUser().pipe(
@@ -84,5 +98,4 @@ export class UserProfileComponent {
       }
     );
   }
-  
 }

@@ -24,6 +24,13 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  /**
+    * Logs the user in using the user data provided.
+    * When logged in, stores the user information and token in local storage.
+    * Navigates user to the movies page and displays a success message.
+    * If user unable to log in then it displays an error message.
+    */
+
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
       
